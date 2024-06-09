@@ -2,13 +2,13 @@ import { Component } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 
 @Component({
-  selector: 'app-pokemon',
+  selector: 'app-trainer',
   standalone: true,
   imports: [FormsModule],
-  templateUrl: './pokemon.component.html',
-  styleUrl: './pokemon.component.scss'
+  templateUrl: './trainer.component.html',
+  styleUrl: './trainer.component.scss'
 })
-export class PokemonComponent {
+export class TrainerComponent {
 
   onSubmit() {
     // Here you can handle form submission
