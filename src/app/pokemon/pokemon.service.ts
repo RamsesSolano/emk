@@ -1,28 +1,43 @@
 import { Injectable, inject } from '@angular/core';
-import { pokemonTrainer } from '../models/pokemonTrainer';
+import { PokemonTrainer } from '../models/pokemonTrainer';
 import { Observable } from 'rxjs';
-import { Firestore, collection, collectionData } from '@angular/fire/firestore';
+import { CollectionReference, DocumentData, Firestore, addDoc, collection, collectionData } from '@angular/fire/firestore';
 
 @Injectable({
   providedIn: 'root'
 })
 export class PokemonService {
 
-  trainersList: Array<pokemonTrainer> = [];
-  info$!: Observable<any[]>; 
+  trainersList: Array<PokemonTrainer> = [];
+  info$!: Observable<any[]>;
 
   private firestore: Firestore = inject(Firestore);
+  private trainersInformation: CollectionReference< DocumentData, DocumentData >;
 
   constructor() {
-    const pokemonCollection = collection( this.firestore, 'pokemon_club' );
+
+    this.trainersInformation = collection( this.firestore, 'pokemon_club' );
+
+    /*
+    const pokemonCollection = collection( this.firestore,  );
     this.info$ = collectionData( pokemonCollection );
     this.info$.subscribe( element => {
-      
+      this.trainersList = element;
+      console.log( this.trainersList );
     });
+    */
+  }
+
+  getTrainersInformation(): Observable<PokemonTrainer[]>{
+    return collectionData( this.trainersInformation ) as Observable< PokemonTrainer[] >;
   }
 
   getFirestore(){
     return this.firestore;
+  }
+
+  addTrainer( newPokemonTrainer: PokemonTrainer ){
+    return addDoc( this.trainersInformation, newPokemonTrainer );
   }
 
 }

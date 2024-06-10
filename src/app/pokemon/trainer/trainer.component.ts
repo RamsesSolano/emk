@@ -1,18 +1,41 @@
-import { Component } from '@angular/core';
-import { FormsModule } from '@angular/forms';
+import { Component, inject } from '@angular/core';
+import { FormControl, FormGroup, FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { PokemonService } from '../pokemon.service';
+import { PokemonTrainer } from '../../models/pokemonTrainer';
 
 @Component({
   selector: 'app-trainer',
   standalone: true,
-  imports: [FormsModule],
+  imports: [FormsModule, ReactiveFormsModule],
+  providers: [ PokemonService ],
   templateUrl: './trainer.component.html',
   styleUrl: './trainer.component.scss'
 })
 export class TrainerComponent {
 
+  trainerInfoForm = new FormGroup({
+    name: new FormControl(''),
+    cellphone: new FormControl('')
+  });
+
+  pokemonService: PokemonService = inject( PokemonService );
+
   onSubmit() {
-    // Here you can handle form submission
-    console.log('Form submitted!');
+    console.log( this.trainerInfoForm.value );
+    if( this.trainerInfoForm.valid ){
+
+      const name = ( ( this.trainerInfoForm.get('name') )? this.trainerInfoForm.get('name')?.value : '' );
+      const cellphone = ( ( this.trainerInfoForm.get('cellphone') )? this.trainerInfoForm.get('name')?.value : '' );
+
+      const newPokemonTrainer: PokemonTrainer = {
+        name: name,
+        cellphone: cellphone,
+        accounts : []
+      }
+
+      this.pokemonService.addTrainer( newPokemonTrainer );
+
+    }
   }
 
 }

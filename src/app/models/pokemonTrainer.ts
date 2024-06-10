@@ -1,7 +1,7 @@
 import { pokemonAccount } from "./pokemonAccount";
 
-export interface pokemonTrainer {
-    name: string;
-    cellphone: string; 
+export interface PokemonTrainer {
+    name: string | null | undefined;
+    cellphone: string | null | undefined;
     accounts: Array<pokemonAccount>;
 }
