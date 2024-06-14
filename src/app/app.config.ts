@@ -1,9 +1,9 @@
-import { ApplicationConfig } from '@angular/core';
+import { ApplicationConfig, inject } from '@angular/core';
 import { provideRouter } from '@angular/router';
 
 import { routes } from './app.routes';
 import { provideClientHydration } from '@angular/platform-browser';
-import { initializeApp, provideFirebaseApp } from '@angular/fire/app';
+import { FirebaseApp, initializeApp, provideFirebaseApp } from '@angular/fire/app';
 import { getAuth, provideAuth } from '@angular/fire/auth';
 import { getAnalytics, provideAnalytics, ScreenTrackingService, UserTrackingService } from '@angular/fire/analytics';
 import { initializeAppCheck, ReCaptchaEnterpriseProvider, provideAppCheck } from '@angular/fire/app-check';
@@ -30,7 +30,7 @@ export const appConfig: ApplicationConfig = {
       "authDomain":"example-angular-e7623.firebaseapp.com",
       "messagingSenderId":"213162174191"
     })), 
-    provideAuth(() => getAuth()),
+    provideAuth(() => getAuth(inject(FirebaseApp))),
     /*
     provideAnalytics(() => g
     etAnalytics()), 

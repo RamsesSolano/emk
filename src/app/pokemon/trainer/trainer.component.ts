@@ -2,6 +2,7 @@ import { Component, inject } from '@angular/core';
 import { FormControl, FormGroup, FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { PokemonService } from '../pokemon.service';
 import { PokemonTrainer } from '../../models/pokemonTrainer';
+import { Auth } from '@angular/fire/auth';
 
 @Component({
   selector: 'app-trainer',
@@ -19,6 +20,7 @@ export class TrainerComponent {
   });
 
   pokemonService: PokemonService = inject( PokemonService );
+  auth = inject( Auth );
 
   onSubmit() {
     console.log( this.trainerInfoForm.value );
