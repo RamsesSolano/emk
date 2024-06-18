@@ -2,6 +2,7 @@ import { Routes } from '@angular/router';
 import { PokemonComponent } from './pokemon/pokemon.component';
 import { TrainerComponent } from './pokemon/trainer/trainer.component';
 import { DashboardComponent } from './pokemon/dashboard/dashboard.component';
+import { LoginComponent } from './pokemon/login/login.component';
 
 export const routes: Routes = [
     {
@@ -17,8 +18,12 @@ export const routes: Routes = [
                 component: DashboardComponent
             },
             {
+                path: 'login',
+                component: LoginComponent
+            },
+            {
                 path: '',
-                redirectTo: 'dashboard',
+                redirectTo: 'login',
                 pathMatch: 'full'
             }
 
