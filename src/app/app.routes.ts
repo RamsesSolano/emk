@@ -6,7 +6,7 @@ import { LoginComponent } from './pokemon/login/login.component';
 
 export const routes: Routes = [
     {
-        path: 'rubiraiders',
+        path: 'pokemon',
         component: PokemonComponent,
         children: [
             {
@@ -31,7 +31,7 @@ export const routes: Routes = [
     },
     {
         path: '',
-        redirectTo: 'rubiraiders',
+        redirectTo: 'pokemon/dashboard',
         pathMatch: 'full'
     }
 ];
