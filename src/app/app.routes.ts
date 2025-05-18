@@ -1,25 +1,21 @@
 import { Routes } from '@angular/router';
-import { PokemonComponent } from './pokemon/pokemon.component';
-import { TrainerComponent } from './pokemon/trainer/trainer.component';
-import { DashboardComponent } from './pokemon/dashboard/dashboard.component';
-import { LoginComponent } from './pokemon/login/login.component';
 
 export const routes: Routes = [
     {
         path: 'pokemon',
-        component: PokemonComponent,
+        component: undefined,
         children: [
             {
                 path: 'register',
-                component: TrainerComponent
+                component: undefined
             },
             {
                 path: 'dashboard',
-                component: DashboardComponent
+                component: undefined
             },
             {
                 path: 'login',
-                component: LoginComponent
+                component: undefined
             },
             {
                 path: '',
